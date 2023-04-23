@@ -1,0 +1,40 @@
+name: Building and linting
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  building:
+    name: build app
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use Node.js
+      uses: actions/checkout@v3
+      with:
+          node-version: 18.x
+          cache: 'npm'
+    - name: Install npm modules
+      run: npm ci
+    - name: Build app in production mode
+      run: npm run build
+  linting:
+    name: linting
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use Node.js
+      uses: actions/checkout@v3
+      with:
+          node-version: 18.x
+          cache: 'npm'
+    - name: Install npm modules
+      run: npm ci
+    - name: Linting .ts/.tsx files
+      run: |
+        npm run lint:ts
+        npm run prettier:check
+    - name: Linting .scss files
+      run: npm run lint:scss

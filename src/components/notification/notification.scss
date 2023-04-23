@@ -1,0 +1,162 @@
+.notification {
+    font-family: 'Poppins';
+    padding-left: 35px;
+    padding-top: 29px;
+    padding-bottom: 100px;
+    background-color: #f2f6f7;
+
+    &__header {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #104e5b;
+    }
+    &__items {
+        width: 302px;
+        height: 136px;
+        background: #ffffff;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.01);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 44px;
+
+        &__main {
+            display: grid;
+            grid-template-columns: 9fr 3fr;
+            justify-items: center;
+            align-items: center;
+            border-bottom: 1px dashed #bebebe;
+            padding: 14px 17px 6px 0px;
+
+            &__about {
+                display: grid;
+                grid-template-columns: 4fr 8fr;
+                gap: 13px;
+                align-items: center;
+
+                .image {
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 20px;
+                        filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.05));
+                    }
+                }
+                .aboutCourier {
+                    display: flex;
+                    flex-direction: column;
+
+                    &__name {
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 21px;
+                        color: #104e5b;
+                    }
+
+                    &__id {
+                        font-weight: 400;
+                        font-size: 12px;
+                        color: #616f80;
+                    }
+                    &__profession {
+                        font-weight: 600;
+                        font-size: 11px;
+                        line-height: 28px;
+                        margin-top: -6px;
+                        color: #bebebe;
+                    }
+                }
+            }
+            &__phone {
+                all: unset;
+                width: 45px;
+                height: 45px;
+                background: #fdc27a;
+                box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.05);
+                border-radius: 15px;
+                display: flex;
+                place-content: center;
+                align-items: center;
+
+                &__number {
+                    background: #ffffff;
+                    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.01);
+                    font-weight: 400;
+                    font-size: 12px;
+                    color: #616f80;
+                }
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    filter: brightness(0) saturate(100%) invert(26%) sepia(21%) saturate(1538%) hue-rotate(143deg)
+                        brightness(88%) contrast(94%);
+                }
+            }
+        }
+
+        &__footer {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+            gap: 13px;
+            margin: 8px 13px 0 20px;
+
+            &__left,
+            &__right {
+                display: grid;
+                grid-template-columns: 3fr 9fr;
+                align-items: end;
+                gap: 5px;
+
+                .image {
+                    width: 30px;
+                    height: 30px;
+                    background: #fdc27a;
+                    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.05);
+                    border-radius: 10px;
+                    display: flex;
+                    place-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+
+                .title {
+                    &__about {
+                        font-weight: 500;
+                        font-size: 8px;
+                        line-height: 28px;
+                        color: #bebebe;
+                    }
+                }
+            }
+
+            &__left {
+                .title {
+                    &__time {
+                        font-weight: 600;
+                        font-size: 9px;
+                        line-height: 14px;
+                        color: #104e5b;
+                        margin-top: -9px;
+                    }
+                }
+            }
+            &__right {
+                .title {
+                    &__location {
+                        font-weight: 600;
+                        font-size: 9px;
+                        line-height: 14px;
+                        color: #104e5b;
+                        margin-top: -9px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.forgot {
+    display: grid;
+    margin-top: 150px;
+    
+    &__form {
+        text-align: center;
+
+        .email {
+            .title {
+                font-family: 'Poppins';
+                font-weight: 700;
+                font-size: 28px;
+                line-height: 42px;
+                color: #104e5b;
+            }
+            input {
+                all: unset;
+                margin-top: 40px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 28px;
+                height: 30px;
+                border-bottom: 1px solid #104e5b;
+                color: #104e5b;
+                text-align: left;
+                width: 281px;
+            }
+        }
+
+        .btn {
+            all: unset;
+            width: 248px;
+            margin-top: 50px;
+            height: 45px;
+            background: #fdc27a;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 28px;
+            text-align: center;
+            color: #2b2d33;
+        }
+    }
+    .reset-link{
+        all:unset;
+        text-align: center;
+        color: #2b2d33;
+    }
+}

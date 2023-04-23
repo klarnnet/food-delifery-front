@@ -1,0 +1,98 @@
+.orderItems {
+    display: flex;
+    flex-direction: column;
+    width: 302px;
+    height: 309px;
+    overflow: auto;
+    gap: 25px;
+    margin-left: 8px;
+
+    .item {
+        width: 302px;
+        height: 101px;
+        background: #ffffff;
+        box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.01);
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 4fr 8fr;
+
+        &__image {
+            display: flex;
+            align-items: center;
+            place-self: center;
+            .productImage {
+                border-radius: 15px;
+                width: 70px;
+                height: 70px;
+                filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.15));
+            }
+        }
+
+        &__about {
+            display: flex;
+            flex-direction: column;
+
+            &__firstname {
+                margin-top: 15px;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+                color: #104e5b;
+            }
+            &__lastname {
+                font-weight: 400;
+                font-size: 10px;
+                margin-top: -8px;
+                line-height: 28px;
+                color: #616f80;
+            }
+
+            &__coastCount {
+                display: flex;
+                gap: 32px;
+                margin-top: -5px;
+                padding-bottom: 7px;
+                .coast {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #104e5b;
+                    align-items: center;
+                    display: flex;
+
+                    &__usd {
+                        font-weight: 300;
+                        font-size: 14px;
+                        line-height: 21px;
+                        color: #99c932;
+                    }
+                }
+                .count {
+                    width: 105px;
+                    height: 35px;
+                    background: rgba(253, 194, 122, 0.1);
+                    border-radius: 20px;
+                    display: flex;
+                    gap: 15px;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #104e5b;
+
+                    &__min,
+                    &__pl {
+                        all: unset;
+                        text-align: center;
+                        border-radius: 50%;
+                        width: 26px;
+                        height: 26px;
+                        background: #fdc27a;
+                        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                    }
+                }
+            }
+        }
+    }
+}
