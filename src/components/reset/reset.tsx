@@ -23,10 +23,10 @@ export function Reset() {
         <div className='reset'>
             <form className='reset__form' onSubmit={handleSubmit}>
                 <label className="password">
-                    <div className="title">Enter a new password</div>
+                    <div className="title">Ведите новый пароль</div>
                     <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
                 </label>
-                <button className='btn' type="submit">Send reset password</button>
+                <button className='btn' type="submit">Отправить</button>
             </form>
         </div>
     );

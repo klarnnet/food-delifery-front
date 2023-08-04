@@ -1,83 +1,119 @@
 import { useLocation } from 'react-router-dom';
 import './foodDetail.scss';
-import Star from '../../shared/assets/start.svg';
-import Time from '../../shared/assets/time.svg';
-import Like from '../../shared/assets/ic_favorite_selected.svg';
-import UnLike from '../../shared/assets/ic_favorite_unselected.svg';
-import { favoriteApi } from '../../store/services/favoriteService';
-import { MouseEvent, useContext, useState } from 'react';
-import type { IFood } from '../../store/types/IFood';
-import type { ISetFavoriteFood } from '../../store/types/IFavorite';
-import { CartContext } from '../../store/services/cartContext';
- 
-export const FoodDetail = () => {
+import { FormEvent, useState } from 'react';
+
+export const FlatDetail = () => {
     const { state: { i } = {} } = useLocation();
-    const { cart, plusToCart } = useContext(CartContext);
-    const [setFavoriteFood] = favoriteApi.useSetFavoriteFoodMutation();
-    const [deleteFavoriteFood] = favoriteApi.useDeleteFavoriteFoodMutation();
-    const { data: favoriteData } = favoriteApi.useGetFavoriteFoodQuery({ filter: 'all', search: '' });
-    const [count, setCount] = useState<number>(1)
+    const [number, setNumber] = useState<number>(1);
 
-
-    const setOrNot = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, i: IFood) => {
+    const changePlusImage = async (e: FormEvent) => {
         e.preventDefault();
-        food?.find((d: { id: string | undefined }) => d.id === i.id)
-            ? deleteFavoriteFood(Number(i.id) as unknown as ISetFavoriteFood)
-            : setFavoriteFood(Number(i.id) as unknown as ISetFavoriteFood);
+        if (number >= 3) {
+            setNumber(1);
+        } else {
+            setNumber(number + 1);
+        }
+        console.log(number);
     };
-
-
-    if (favoriteData) {
-        const resData = JSON.parse(JSON.stringify(favoriteData));
-        var food = resData.map((i: { __food__: any }) => i.__food__);
-    }
-
-    
+    const changeMinuseImage = async (e: FormEvent) => {
+        e.preventDefault();
+        if (number <= 1) {
+            setNumber(3);
+        } else {
+            setNumber(number - 1);
+        }
+        console.log(number);
+    };
     return (
-        <div className="foodDetail">
-            <div className="foodDetail__header">
-                <div className="image">
-                    <img className="img" src={i.image}></img>
-                    <div className="r">
-                        <button key={i.id} className="btn" onClick={e => setOrNot(e, i)}>
-                            <img
-                                className="btn__like"
-                                alt="like"
-                                src={food?.find((d: { id: string | undefined }) => d.id === i.id) ? Like : UnLike}
-                            ></img>
-                        </button>
-                    </div>
+        <div className="flatDetail">
+            <div className="images">
+                <button className="btn" onClick={changePlusImage}>
+                    +
+                </button>
+                <div className="img">
+                    <img
+                        src={`http://localhost:4000/${
+                            number === 1 ? i.about.image1 : number === 2 ? i.about.image2 : i.about.image3
+                        }`}
+                    ></img>
+                </div>
+                <button className="btn" onClick={changeMinuseImage}>
+                    -
+                </button>
+            </div>
+            <div className="aboutFlat">
+                <div className="name">
+                    <div>{i.about.name}</div>
+                </div>
+
+                <div className="about">
+                    <div>Описание:</div>
+                    <div>{i.about.description}</div>
                 </div>
             </div>
-            <div className="foodDetail__main">
-                <div className="foodDetail__main__header">
-                    <div className="name">
-                        <div className="name__first">{i.firstname}</div>
-                        <div className="name__second">{i.lastname}</div>
+
+            <div className="detail">
+                <div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/type.png')}></img>
+                        <div>Количество комнат:</div>
+                        <div>{i.about.rooms}</div>
                     </div>
-                    <div className="coast">{i.coast}</div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/price-tag.png')}></img>
+                        <div>Цена:</div>
+                        <div>{i.about.coast} p.</div>
+                    </div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/multiple-users-silhouette.png')}></img>
+                        <div>Допустимое количество людей</div>
+                        <div>{i.about.people}</div>
+                    </div>
+
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/clock.png')}></img>
+                        <div>Тип:</div>
+                        <div>{i.about.type} </div>
+                    </div>
                 </div>
-                <div className="foodDetail__main__info">
-                    <div className="stars">
-                        <img alt="start" src={Star}></img>
-                        <div>{i.stars}</div>
+                <div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos//skyline.png')}></img>
+                        <div>Город:</div>
+                        <div>{i.location.city}</div>
                     </div>
-                    <div className="time">
-                        <img alt="time" src={Time}></img>
-                        <div>{i.time}</div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/location.png')}></img>
+                        <div>Адрес:</div>
+                        <div>{i.location.adress}</div>
+                    </div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/moscow-metro-logo.png')}></img>
+                        <div>Метро:</div>
+                        <div>{i.location.metro}</div>
+                    </div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos//area-with-pins.png')}></img>
+                        <div>Район</div>
+                        <div>{i.location.region}</div>
                     </div>
                 </div>
-                <div className="foodDetail__main__about">
-                    <div className="head">About</div>
-                    <div className="title">{i.about}</div>
-                </div>
-                <div className="foodDetail__main__cart">
-                    <div className="count">
-                        <button onClick={() => count===0?setCount(0):setCount(count - 1)} className="count__min">-</button>
-                        <div className="count__times">{count}</div>
-                        <button onClick={() => setCount(count + 1)} className="count__pl">+</button>
+                <div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos//phone-call.png')}></img>
+                        <div>Номер телефона для связи:</div>
+                        <div>{i.about.phone}</div>
                     </div>
-                    <button className='btn' onClick={() => plusToCart(i,count)}> ADD TO CART </button>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos/user.png')}></img>
+                        <div>Имя арендадателя/продавца:</div>
+                        <div>{i.location.username}</div>
+                    </div>
+                    <div className="about">
+                        <img className="logos" src={require('../../images/logos//gmail.png')}></img>
+                        <div>Электронная почта арендадателя/продавца:</div>
+                        <div>{i.location.usergmail}</div>
+                    </div>
                 </div>
             </div>
         </div>

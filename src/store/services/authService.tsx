@@ -7,7 +7,7 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/auth' }),
     tagTypes: ['Auth'], 
     endpoints: build => ({
-        loginUser: build.mutation<ILoginResponse, ILoginRequest>({
+        loginUser: build.mutation<any, ILoginRequest>({
             query: login => ({
                 url: '/signin', 
                 method: 'POST',

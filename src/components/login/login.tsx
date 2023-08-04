@@ -16,9 +16,10 @@ export const Login = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         const token = await loginUser({ email, password } as ILoginRequest).unwrap();
+        console.log(token[0])
 
         if (token) {
-            dispatch(setUser(token.accessToken as string));
+            dispatch(setUser(token[0]));
             navigate('/home');
         }
     };
@@ -26,7 +27,7 @@ export const Login = () => {
         <div className="login">
             <form className="login__form" onSubmit={handleSubmit}>
                 <div className="input-blok">
-                    <div className="input-blok__text">Email Address</div>
+                    <div className="input-blok__text">Элеткорнная почта</div>
                     <input
                         className="input-blok__input"
                         type="email"
@@ -35,7 +36,7 @@ export const Login = () => {
                     />
                 </div>
                 <div className="input-blok">
-                    <div className="input-blok__text">Password</div>
+                    <div className="input-blok__text">Пароль</div>
                     <input
                         className="input-blok__input"
                         type="password"
@@ -45,9 +46,9 @@ export const Login = () => {
                 </div>
 
                 <Link className="forgot" to="/forgot">
-                    forgot password
+                    Забыл пароль
                 </Link>
-                <input className="btn" type="submit" value="Sign In" />
+                <input className="btn" type="submit" value="Войти" />
             </form>
         </div>
     );

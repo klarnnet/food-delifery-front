@@ -21,14 +21,14 @@ export function Forgot() {
         <div className='forgot'>
             <form className='forgot__form' onSubmit={handleSubmit}>
                 <label className='email'>
-                   <div className='title'>Enter your email to reset password</div> 
+                   <div className='title'>Введите ваш элестронный адрес</div> 
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
                 </label>
-                <button className='btn' type="submit">Send email</button>
+                <button className='btn' type="submit">Отправить</button>
                 <div>
                     {resetLink ? (
                         <Link className='reset-link' to="/reset-password/:token" state={{ resetLink: resetLink }}>
-                            reset link
+                            нажмите для сброса пароля
                         </Link>
                     ) : (
                         ''

@@ -1,12 +1,11 @@
 .signup {
     background: #f2f6f7;
-    height: 100vh;
-
+    border-radius: 40px;
     &__form {
         display: flex;
         flex-flow: column;
         align-items: center;
-        gap: 30px;
+        gap: 10px;
         margin-top: 30px;
         display: flex;
         font-style: normal;
@@ -14,6 +13,7 @@
         font-size: 12px;
         line-height: 28px;
         color: #616f80;
+        padding-bottom: 30px;
 
         .input-blok {
             &__text {
@@ -34,7 +34,7 @@
             all: unset;
             width: 248px;
             height: 45px;
-            background: #fdc27a;
+            background: #f7f386;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             font-weight: 600;
@@ -43,8 +43,7 @@
             text-align: center;
             color: #2b2d33;
             align-self: center;
-            position: absolute;
-            bottom: 40px;
+            margin-top: 30px;
         }
     }
 }

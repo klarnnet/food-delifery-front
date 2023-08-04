@@ -1,119 +1,87 @@
-import './favorite.scss';
-import Like from '../../shared/assets/ic_favorite_selected.svg';
-
-import { favoriteApi } from '../../store/services/favoriteService';
-import { MouseEvent, useContext, useState } from 'react';
-import Filter from '../../shared/assets/filter.svg';
-import type { ISetFavoriteFood } from '../../store/types/IFavorite';
-import { CartContext } from '../../store/services/cartContext';
-import type { IFood } from '../../store/types/IFood';
-import { Advertising } from '../advertising/advertising';
 import { Link } from 'react-router-dom';
-import { userApi } from '../../store/services/userService'; 
+import { favoriteApi } from '../../store/services/favoriteService';
+import './favorite.scss';
+import { FormEvent, useState } from 'react';
 
 export const Favorite = () => {
-    const [selectedFilter, setSelectedFilter] = useState<string>('all');
-    const [search, setSearch] = useState<string>('');
     const [deleteFavoriteFood] = favoriteApi.useDeleteFavoriteFoodMutation();
-    let { data: favoriteData} = favoriteApi.useGetFavoriteFoodQuery({ filter: selectedFilter, search: search });
-    favoriteData = favoriteData?.map((item: any) => item.__food__);
-    const { data:user } = userApi.useGetUserQuery({});
 
-    const filter = [
-        'desserts',
-        'salads',
-        'drink',
-        'soups',
-        'vegetarian',
-        'fast food',
-        'salty',
-        'spicy',
-        'sweet',
-        'sour',
-    ];
-    function setFilter(i: string) {
-        if (i === selectedFilter) {
-            setSelectedFilter('all');
-        } else {
-            setSelectedFilter(i);
-        }
-    }
-    const [burger, setBurger] = useState('close');
+    let { data: favoriteData } = favoriteApi.useGetFavoriteFoodQuery('');
+    favoriteData = favoriteData?.map((item: any) => item.__flat__);
 
-    function openCloseFilter() {
-        if (burger === 'close') {
-            setBurger('open');
-        } else {
-            setBurger('close');
-        }
-    }
-    const { plusToCart } = useContext(CartContext);
+    const deleteFavFood = (e: any, i: any) => {
+        e.preventDefault();
+        deleteFavoriteFood(i.id);
+    };
 
-    const addFoodToCart=(e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, item:IFood)=>{
-        e.preventDefault()
-        plusToCart(item,1)
-    }
+    const [numbers, setNumbers] = useState<{ [key: string]: number[] }>({});
 
-    const deleteFavFood = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,i: IFood) =>{
-        e.preventDefault()
-        deleteFavoriteFood(Number(i.id) as unknown as ISetFavoriteFood)
-    }
+    const changePlusImage = async (e: FormEvent, id: string) => {
+        e.preventDefault();
+        setNumbers(prevState => ({
+          ...prevState,
+          [id]: prevState[id] ? [(prevState[id][0] % 3) + 1] : [1]
+        }));
+      };
+      
+      const changeMinuseImage = async (e: FormEvent, id: string) => {
+        e.preventDefault();
+        setNumbers(prevState => ({
+          ...prevState,
+          [id]: prevState[id] ? [((prevState[id][0] - 2+3)% 3) +1] : [3]
+        }));
+      };
 
     return (
         <div className="favorite">
-            <div>
-                <div className="favorite__header">
-                    <div className="favorite__header__left">
-                        <div className="text">Let’s eat Favorite food </div>
-                        <form>
-                            <input
-                                className="search-input"
-                                type="text"
-                                onChange={e => setSearch(e.target.value)}
-                                placeholder="Search food..."
-                            />
-                        </form>
-                    </div>
-                    <div className="favorite__header__right">
-                        <div className="f"></div>
-
-                        {user.image?<img  alt = 'avatar' src={'http://localhost:4000/' + user.image} className='avatar'></img>:<div className='avatar'></div>}
-                        <button className="btn" onClick={() => openCloseFilter()}>
-                            <img alt="btn" src={Filter}></img>
-                        </button>
-                    </div>
-                </div>
-                <div className={burger}>
-                    {filter.map(i => (
-                        <div key={i} onClick={() => setFilter(i)} className={i === selectedFilter ? 'filterClick' : 'blok'}>
-                            {i}
+            <div className="orderItems">
+                {favoriteData?.map((i: any) => (
+                    <Link className="link" to={'/modal'} state={{ i: i }}>
+                        <div className="item">
+                            <div className="items">
+                            <div className='images'>
+                                    <button onClick={e => changePlusImage(e, i.id)}>-</button>
+                                    <div className='img'><img src={`http://localhost:4000/${i.about[`image${numbers[i.id]?.[0] || 1}`]}`} alt={`Image ${numbers[i.id]?.[0] || 1}`}></img></div>
+                                    <button onClick={e => changeMinuseImage(e, i.id)}>+</button>
+                                </div>
+                                <div className="name">
+                                    <div>{i.about.name}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Количество комнат:</div>
+                                    <div>{i.about.rooms}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Цена:</div>
+                                    <div>{i.about.coast} p.</div>
+                                </div>
+                                <div className="about">
+                                    <div>Допустимое количество людей</div>
+                                    <div>{i.about.people}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Город:</div>
+                                    <div>{i.location.city}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Адрес:</div>
+                                    <div>{i.location.adress}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Метро:</div>
+                                    <div>{i.location.metro}</div>
+                                </div>
+                                <div className="about">
+                                    <div>Район</div>
+                                    <div>{i.location.region}</div>
+                                </div>
+                                <button className="btn" onClick={e => deleteFavFood(e, i)}>
+                                    Убрать
+                                </button>
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-
-            <Advertising/>
-
-            <div className="favorite__main">
-                {favoriteData?.map((i:any) => (
-                            <Link className="card" to="/modal" state={{ i: i }}>
-                                <div className="card__image">
-                                    <img className="image" src={i.image}></img>
-                                    <div className="r">
-                                        <button className="btn" onClick={(e) => deleteFavFood(e,i)}>
-                                            <img className="btn__like" alt="like" src={Like}></img>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="card__firstname">{i.firstname}</div>
-                                <div className="card__lastname">{i.lastname}</div>
-                                <div className="card__coast">{i.coast}</div>
-                                <div className="card__addToCart">
-                                    <button onClick={(e)=>addFoodToCart(e,i)} className="btn">Add to Cart</button>
-                                </div>
-                            </Link>
-                    ),
-                )}
+                    </Link>
+                ))}
             </div>
         </div>
     );

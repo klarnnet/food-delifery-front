@@ -1,104 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,600&display=swap');
 
 .menu {
     background-color: #f2f6f7;
     height: 100vh;
+    color: #616f80;
+
     &__nav {
-        display: grid;
-        grid-template-columns: 150px 75px 150px;
-        justify-items: center;
-        overflow: hidden;
-        position: fixed;
-        bottom: 0;
+        display: flex;
+        gap: 50px;
+        place-content: center;
         width: 100%;
-
-        &__left,
-        &__right {
-            display: flex;
-            gap: 45px;
-            background-color: #fff;
-            padding: 16px 0 4px 0;
-            // margin-top: 241px;
-
-            img {
-                width: 22px;
-                height: 22px;
-            }
-            .active {
-                filter: brightness(0) saturate(100%) invert(78%) sepia(28%) saturate(818%) hue-rotate(334deg)
-                    brightness(104%) contrast(98%);
-            }
-            .link {
-                filter: brightness(0) saturate(100%) invert(76%) sepia(13%) saturate(0%) hue-rotate(150deg)
-                    brightness(114%) contrast(86%);
-            }
-        }
-
-        &__left {
-            border-radius: 0 20px 0 0;
-            padding: 16px 22px 6px 40px;
-        }
-        &__right {
-            border-radius: 20px 0px 0 0;
-            padding: 16px 40px 6px 22px;
-        }
-        &__center {
-            width: 86px;
-            height: 50px;
-            background: transparent;
-            margin-bottom: 1rem;
-            margin-right: 1rem;
-            border-radius: 20px;
-            position: relative;
-            text-align: center;
-            color: white;
-
-            .v {
-                position: absolute;
-                width: 96%;
-                height: 196%;
-                border-radius: 61%;
-                left: 11.5%;
-                top: -97%;
-                background: transparent;
-                box-shadow: 0px 44px 0 0;
-
-                // position: absolute;
-                // width: 50.5%;
-                // height: 40.9%;
-                // border-radius: 61%;
-                // left: 29%;
-                // top: 63%;
-                // background: transparent;
-                // box-shadow: 0px 44px 0 0;
-            }
-        }
-    }
-
-    .cart {
-        width: 50px;
-        height: 50px;
-        background-color: #fdc27a;
-        border: 2px solid #ffffff;
-        outline: 10px;
+        color: #464d54;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        display: grid;
-        justify-self: center;
-        align-self: center;
-        overflow: hidden;
-        position: fixed;
-        bottom: 0;
-        margin-bottom: 25px;
-        margin-left: 163px;
+        border-radius: 40px;
+        padding: 25px;
+        background-color: #fff;
+        font-family: 'Montserrat';
 
-        img {
-            width: 22px;
-            height: 22px;
-            justify-self: center;
-            align-self: center;
-            filter: brightness(0) saturate(100%) invert(23%) sepia(21%) saturate(2188%) hue-rotate(146deg)
-                brightness(92%) contrast(88%);
+        .link {
+            all: unset;
+            font-family: 'Montserrat';
+            padding: 5px 15px;
+        }
+        .active {
+            all: unset;
+            border: 2px solid #f7f386;
+            background-color: #f7f386;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+            padding: 5px 15px;
+            font-family: 'Montserrat';
         }
     }
+
+    @media (max-width: 800px) and (min-width:500px){
+        &__nav {
+            display: flex;
+            align-items: center;
+    }}
+
+    @media (max-width: 500px) and (min-width:320px){
+        &__nav {
+            display: flex;
+            flex-direction: column;
+            
+    }}
 }

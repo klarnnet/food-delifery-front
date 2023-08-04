@@ -4,8 +4,8 @@ import './changeAbout.scss'
 
 export const ChangeAbout = () => {
     const { data:user } = userApi.useGetUserQuery({});
-    const [username, setUsername] = useState(user.username);
-    const [email, setEmail] = useState(user.email);
+    const [username, setUsername] = useState(user?.username);
+    const [email, setEmail] = useState(user?.email);
     const [setUserAboutChange] = userApi.useSetUserAboutChangeMutation()
     const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
@@ -15,9 +15,8 @@ export const ChangeAbout = () => {
     return (
         <div className="changeAbout">
             <form className="changeAbout__form" onSubmit={handleSubmit}>
-               
                 <div className="inputBlok">
-                    <div className='inputBlok__text'>Username</div>
+                    <div className='inputBlok__text'>Имя</div>
                     <input
                     className='inputBlok__input'
                         type="text"
@@ -25,14 +24,15 @@ export const ChangeAbout = () => {
                     ></input>
                 </div>
                 <div className="inputBlok">
-                    <div className='inputBlok__text'>Email</div>
+                    <div className='inputBlok__text'>Электронная почта</div>
                     <input  className='inputBlok__input'
                         type="email"
                         value={email} onChange={e => setEmail(e.target.value)}
                     ></input>
                 </div>
+
                 <button className="changeAbout__form__btn" type="submit">
-                    Save
+                Сохранить
                 </button>
             </form>
         </div>

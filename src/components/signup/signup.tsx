@@ -10,11 +10,8 @@ export const Singup = () => {
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
     const [fail, setFail] = useState(false);
-
     const navigate = useNavigate();
-
     const [registerUser, {data}] = authApi.useRegisterUserMutation()
-
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -32,24 +29,24 @@ export const Singup = () => {
         <div className="signup">
             <form className="signup__form" onSubmit={handleSubmit}>
                 <div className="input-blok">
-                    <div className='input-blok__text'>Username</div>
+                    <div className='input-blok__text'>Имя ползователя</div>
                     <input className='input-blok__input' type="text" value={username} onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div className="input-blok">
-                    <div className='input-blok__text'>Email Address</div>
+                    <div className='input-blok__text'>Электронная почта</div>
                     <input className='input-blok__input' type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div className="input-blok">
-                    <div className='input-blok__text'>Password</div>
+                    <div className='input-blok__text'>Пароль</div>
                     <input className='input-blok__input' type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <div className="input-blok">
-                    <div className='input-blok__text'>Confirm Password</div>
-                    {fail && <div className="repeat-password">Passwords don’t match</div>}
+                    <div className='input-blok__text'>Повторите пароль</div>
+                    {fail && <div className="repeat-password">Повторите пароль</div>}
                     <input className='input-blok__input' type="password" value={confirm} onChange={e => setConfirm(e.target.value)}/>
                 </div>
 
-                <input className="btn" type="submit" value="Sign up" />
+                <input className="btn" type="submit" value="Зарегестрироваться" />
             </form>
         </div>
     );

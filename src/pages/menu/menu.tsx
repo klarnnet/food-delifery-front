@@ -8,31 +8,23 @@ import { Outlet, NavLink } from 'react-router-dom';
 
 export const Menu = () => (
     <div className="menu">
-        <Outlet />
         <div className="menu__nav">
-            <div className="menu__nav__left">
-                <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/home">
-                    <img alt="home" src={Home}></img>
-                </NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/favorite">
-                    <img alt="favorite" src={Favorite}></img>
-                </NavLink>
-            </div>
-            <div className='menu__nav__center'>
-                <div className='v'></div>
-            </div>
-
-            <div className="menu__nav__right">
-                <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/notification">
-                    <img alt="notification" src={Notification}></img>
-                </NavLink>
-                <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/profile/account">
-                    <img alt="profile" src={Profile}></img>
-                </NavLink>
-            </div>
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/home">
+                <div>Главная</div>
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/favorite">
+                <div>Избранное</div>
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/advertising">
+                <div>Мои обьявления</div>
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/profile">
+                <div>Профиль</div>
+            </NavLink>
+            <NavLink className={({ isActive }) => (isActive ? 'active' : 'link')} to="/about">
+                <div>О нас</div>
+            </NavLink>
         </div>
-        <NavLink className="cart" to="/order">
-            <img alt="order" src={Order}></img>
-        </NavLink>
+        <Outlet />
     </div>
 );

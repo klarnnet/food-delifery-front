@@ -1,6 +1,6 @@
 .login {
     background: #f2f6f7;
-    height: 100vh;
+    border-radius: 40px;
 
     &__form {
         display: flex;
@@ -13,6 +13,7 @@
         font-weight: 400;
         font-size: 12px;
         line-height: 28px;
+        padding-bottom: 30px;
 
         .input-blok {
             &__text {
@@ -33,7 +34,7 @@
             all: unset;
             width: 248px;
             height: 45px;
-            background: #fdc27a;
+            background: #f7f386;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             font-weight: 600;
@@ -42,18 +43,15 @@
             text-align: center;
             color: #2b2d33;
             align-self: center;
-            position: absolute;
             bottom: 40px;
         }
         .forgot {
             margin-top: -10px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
+            font-weight: 600;
+            font-size: 12px;
             line-height: 20px;
             color: #104e5b;
-            margin-right: 38px;
-            margin-left: auto;
         }
     }
 }

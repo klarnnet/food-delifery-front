@@ -6,13 +6,14 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
-    accessToken: string | undefined;
+    accessToken: Array<string> | undefined;
 }
 
 // signup
 export interface IRegisterRequest {
     [x: string]: string;
     username: string;
+    phone:string
     email: string;
     password: string;
 }

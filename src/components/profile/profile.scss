@@ -1,50 +1,30 @@
 .profile {
-    font-family: 'Poppins';
+    font-family: 'Montserrat';
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #616f80;
+    background-color: #f2f6f7;
 
-    &__blok {
-        width: 100%;
-        height: 250px;
-        background: #ffffff;
-        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
-        border-radius: 0 0 40px 40px;
-        &__header {
-            padding: 29px 25px 0 23px;
-            .title {
-                font-weight: 700;
-                font-size: 24px;
-                line-height: 36px;
-                color: #104e5b;
-            }
-            .main {
-                display: grid;
-                grid-template-columns: 4fr 8fr;
-                margin-top: 42px;
-
-                &__avatar {
-                    width: 70px;
-                    height: 70px;
-                    border-radius: 50%;
-                    background-color: #616f80;
-                }
-                &__about {
-                    &__name {
-                        font-weight: 700;
-                        font-size: 16px;
-                        line-height: 24px;
-                        color: #104e5b;
-                    }
-                    &__email,
-                    &__id {
-                        font-weight: 400;
-                        font-size: 11px;
-                        color: #616f80;
-                    }
-                    &__id {
-                        line-height: 14px;
-                    }
-                }
-            }
-        }
+    &__about {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        display: grid;
+        grid-template-columns: 2fr 10fr;
+        gap: 35px;
+        align-items: center;
         
+        .img img{
+             width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
     }
 }

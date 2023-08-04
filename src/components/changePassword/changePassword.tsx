@@ -15,21 +15,21 @@ export const ChangePassword = () => {
         <div className="changePassword">
             <form className="changePassword__form" onSubmit={handleSubmit}>
                 <div className="inputBlok">
-                    <div className='inputBlok__text'>Password</div>
+                    <div className='inputBlok__text'>Введите действующий пароль</div>
                     <input className='inputBlok__input'
                         type="password"
                         value={password} onChange={e => setPassword(e.target.value)}
                     ></input>
                 </div>
                 <div className="inputBlok">
-                    <div className='inputBlok__text'>New password or conifrm password</div>
+                    <div className='inputBlok__text'>Введите новый пароль</div>
                     <input className='inputBlok__input'
                         type="password"
                         value={newPassword} onChange={e => setNewPassword(e.target.value)}
                     ></input>
                 </div>
                 <button className="changePassword__form__btn" type="submit">
-                    Save
+                    Сохранить
                 </button>
             </form>
         </div>

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {  store } from '../slices/store';
-import type {  IGetFavoriteFood, ISetFavoriteFood } from '../types/IFavorite';
+import type { ISetFavoriteFood } from '../types/IFavorite';
 
 
 export const favoriteApi = createApi({
@@ -14,7 +14,6 @@ export const favoriteApi = createApi({
       },}),
     tagTypes: ['Favorite'], 
     endpoints: build => ({
-        
         setFavoriteFood: build.mutation<string, ISetFavoriteFood>({
             query: foodId => ({
                 url: '/favorite/add', 
@@ -33,13 +32,9 @@ export const favoriteApi = createApi({
             invalidatesTags: ['Favorite']
         }),
 
-        getFavoriteFood: build.query<Object[], {filter:string; search: string}>({
+        getFavoriteFood: build.query<any,string>({
             query: (arg) => ({
                 url: `/favorite/findFavorite`,
-                params: {
-                    filter: arg.filter,
-                    search: arg.search
-                }
             }),
             providesTags: result => ['Favorite']
         }),
